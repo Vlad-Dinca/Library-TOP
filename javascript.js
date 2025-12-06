@@ -1,5 +1,5 @@
 
-const myLibrary =[];
+let myLibrary =[];
 
 function Book(title, author, pages, read){
   this.title = title;
@@ -10,7 +10,10 @@ function Book(title, author, pages, read){
 }
 
 function addBookToLibrary(title, author, pages, read){
-  myLibrary = Book(title, author, pages, read);
+  
+   let newBook = new Book(title, author, pages, read);
+  myLibrary.push(newBook);
+
 }
 
 function resetDialog(){
@@ -21,13 +24,28 @@ function resetDialog(){
   document.querySelector("input#no").checked=false
 }
 
+
 let dialog = document.querySelector("dialog");
 let addBook = document.querySelector("#addBook");
 
 addBook.addEventListener("click", (event)=>{
-  // event.preventDefault();
-  dialog.showModal();;
+  dialog.showModal();
 })
+
+submitButton = document.querySelector("#submitButton");
+submitButton.addEventListener("click", (event) =>{
+  let title, author, pages, read;
+  title  = document.querySelector("input#title").value;
+  author = document.querySelector("input#author").value
+  pages = document.querySelector("input#pages").value
+  read = document.querySelector('input[name="read"]').checked;
+  addBookToLibrary(title, author, pages, read);
+  console.log(myLibrary);
+  resetDialog();
+  dialog.close();
+  
+})
+
 
 let closeButton = document.querySelector("#closeButton")
 closeButton.addEventListener("click", (event)=>{
