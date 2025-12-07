@@ -30,66 +30,62 @@ function resetDialog() {
 
 function createBookCard(array) {
   const books = document.querySelector(".books");
+  console.log(array);
 
-  const i = array.length - 1;
-  const book = array[i];
+  for (let i = array.length - 1; i <= array.length - 1; i++) {
 
-  const bookCard = document.createElement("div");
-  const title = document.createElement("div");
-  const author = document.createElement("div");
-  const pages = document.createElement("div");
-  const read = document.createElement("div");
-  const buttonRead = document.createElement("button");
-  const buttonRemove = document.createElement("button");
+    let title = document.createElement("div");
+    let author = document.createElement("div");
+    let pages = document.createElement("div");
+    let read = document.createElement("div");
+    let bookCard = document.createElement("div");
+    let buttonRead = document.createElement("button");
+    let buttonRemove = document.createElement("button");
 
-  bookCard.className = "bookCard";
-  title.className = "title";
-  author.className = "author";
-  pages.className = "pages";
-  read.className = "read";
-  buttonRead.className = "buttonRead";
-  buttonRemove.className = "buttonRemove";
+    books.appendChild(bookCard).className = "bookCard";
+    bookCard.appendChild(title).className = "title";
+    bookCard.appendChild(author).className = "author";
+    bookCard.appendChild(pages).className = "pages";
+    bookCard.appendChild(read).className = "read";
+    bookCard.appendChild(buttonRead).className = "buttonRead";
+    bookCard.appendChild(buttonRemove).className = "buttonRemove";
 
-  title.textContent = book.title;
-  author.textContent = book.author;
-  pages.textContent = book.pages + " pages";
-
-  function updateReadStatus() {
-    if (book.read) {
+    title.textContent = array[i].title;
+    author.textContent = array[i].author;
+    pages.textContent = array[i].pages + " pages";
+    if (array[i].read === true) {
       read.textContent = "Read";
       read.style.color = "green";
-    } else {
+    }
+    else {
       read.textContent = "Not Read";
       read.style.color = "red";
     }
-  }
+    buttonRead.textContent = "Read / Unread";
+    buttonRemove.textContent = "Remove Book";
+    bookCard.dataset.bookId = array[i].id;
 
-  updateReadStatus();
+    buttonRead.addEventListener(("click"), () => {
+        if (array[i].read === true) {
+          array[i].read = false;
+          read.textContent = "Not Read";
+          read.style.color = "red";
+          
+        }
+        else {
+          array[i].read = true;
+          read.textContent = "Read";
+          read.style.color = "green";
+        }
 
-  buttonRead.textContent = "Read / Unread";
-  buttonRemove.textContent = "Remove Book";
+      });
 
-  bookCard.dataset.bookId = book.id;
+    buttonRemove.addEventListener(("click"), () =>{
+      books.removeChild(bookCard);
+    })
 
-  
-  books.appendChild(bookCard);
-  bookCard.appendChild(title);
-  bookCard.appendChild(author);
-  bookCard.appendChild(pages);
-  bookCard.appendChild(read);
-  bookCard.appendChild(buttonRead);
-  bookCard.appendChild(buttonRemove);
-
- 
-  buttonRead.addEventListener("click", () => {
-    book.read = !book.read;   
-    updateReadStatus();        
-  });
-
-  buttonRemove.addEventListener("click", (event) =>{
-    books.removeChild(bookCard);
-
-  })
+  }     
+      
 }
 
 
