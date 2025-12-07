@@ -5,17 +5,17 @@
 }
 
 html {
-  background-color: green;
+  /* background-color: green; */
   font-family: sans-serif;
 }
 
 body {
   display: grid;
   grid-template-columns: 10% 80% 10%;
-  height: 100vh;
-  width: 100vw;
+  width: 100%;
   padding: 0;
   margin: 0;
+  
 }
 
 .leftBar {
@@ -26,6 +26,9 @@ body {
   display: grid;
   justify-content: center;
   grid-template-rows: 1fr 4fr;
+  height:100%;
+  width:10%;
+  position:fixed;
 }
 
 .leftBar>#title {
@@ -38,6 +41,14 @@ body {
   box-shadow: inset 10px 0px 10px 0px gray;
   display: Grid;
   grid-template-columns: repeat(2, 4fr) repeat(3, 3fr) repeat(6, 2fr) repeat(5, 1fr);
+  position:fixed;
+  height:100%;
+  width:10%;
+  top:0;
+  right:0;
+
+
+  
 }
 
 .barPages {
@@ -49,7 +60,8 @@ body {
   grid-area: 1 / 2 / 1 / 2;
   box-shadow: inset 10px 0px 10px rgb(73, 54, 1);
   padding: 10% 10% 10% 10%;
-
+  height:100%;
+  min-height:100vh;
 }
 
 #addBook {
@@ -81,6 +93,8 @@ body {
   align-items:center;
   justify-content:center;
   box-shadow:5px 5px 1px 1px gray;
+  border-left-color:rgb(126, 94, 8);
+  border-left-width:10px;
 }
 
 dialog[open]{
@@ -115,4 +129,20 @@ dialog #yes{
 }
 dialog #no{
   grid-column: 2 / 2;
+}
+
+.bookCard > .buttonRead{
+  background:linear-gradient(to right, rgb(78, 194, 78) 45%, rgb(231, 40, 40) 55%);
+  border-color:gray;
+  border-radius:5px;
+  color:white;
+  text-shadow: 1px 1px gray;
+}
+
+.bookCard > .buttonRemove{
+  background:rgb(231, 40, 40);
+  border-color:gray;
+  border-radius:5px;
+  color:white;
+  text-shadow: 1px 1px gray;
 }
